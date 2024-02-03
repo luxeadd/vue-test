@@ -66,22 +66,36 @@ const toggleShow = () => {
   <p v-html="messagePull"></p>
 
   <!-- イベント定義 v-on 省略@ -->
-  <div class="" :style="{marginTop:commonMargin,}">
+  <div class="common_margin">
     <input type="text" size="30" v-model="number"> <button v-on:click="add">+1</button>
     <input type="text" size="30" v-model="number"> <button @click="add">+1</button>
   </div>
 
-  <div class="" :style="{marginTop:commonMargin}">
+  <div class="common_margin">
     <input type="text" size="30" v-model="newTodo">
     <button @click="addTodo()">追加</button>
     <!-- proosでコンポーネントにtodosを渡す、emitで親removeTodoを子removeTodoと関連づける -->
     <TodoList :todos="todos" @removeTodo="removeTodo"/>
   </div>
 
-  <div class="" :style="{marginTop:commonMargin}">
-    <button @click="toggleShow">クリック</button>
-    <p v-show="isShow">表示</p>
+  <div class="common_margin">
+    <button class="toggle_btn" @click="toggleShow">クリック</button>
+    <p class="show_window" v-show="isShow">表示</p>
   </div>
-
-
 </template>
+
+<style lang="scss" scoped>
+  .common_margin {
+    margin-top: 50px;
+
+    .toggle_btn {
+      cursor: pointer;
+    }
+    .show_window {
+      margin-top: 20px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      transition: all 0.5s;
+    }
+  }
+</style>
